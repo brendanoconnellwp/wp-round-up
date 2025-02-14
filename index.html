@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brendan's Weekly WordPress Newsletter</title>
 <style>
     /* Modern font and base styles */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -212,9 +211,6 @@
 <body>
 <div id="theme-toggle" onclick="toggleTheme()">🌙</div>
 
-<div class="newsletter-container">
-    <h1>Weekly WordPress Newsletter</h1>
-    <p>Week of: Feb 14, 2025</p>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -428,7 +424,6 @@
 </style>
 </head>
 <body>
-<div id="theme-toggle" onclick="toggleTheme()">🌙</div>
 
 <div class="newsletter-container">
     <h1>Weekly WordPress Newsletter</h1>
@@ -555,3 +550,49 @@
         </div>
     </div>
     
+
+
+    <footer>
+        <p>© 2025 <a href="https://brendan-oconnell.com" class="author-link" target="_blank" rel="noopener noreferrer">Brendan's</a> WP Weekly Round up</p>
+    </footer>
+</div>
+
+<script>
+    // Comprehensive Theme Toggle Function
+    function toggleTheme() {
+        const htmlRoot = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Toggle dark mode class
+        htmlRoot.classList.toggle('dark-mode');
+        
+        // Update toggle icon and localStorage
+        if (htmlRoot.classList.contains('dark-mode')) {
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        const htmlRoot = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check saved theme or system preference
+        const savedTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply saved or system theme
+        if (savedTheme === 'dark') {
+            htmlRoot.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+    });
+</script>
+</body>
+</html>
