@@ -212,11 +212,57 @@
         word-wrap: break-word;
     }
 }
+   /* Theme toggle styling */
+    #theme-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        transition: transform 0.3s ease;
+    }
+
+    #theme-toggle:hover {
+        transform: rotate(20deg);
+    }
     /* Other existing styles remain the same */
 </style>
+  <script>
+    // Theme Toggle Function
+    function toggleTheme() {
+        const htmlRoot = document.documentElement;
+        const isDarkMode = htmlRoot.classList.contains('dark-mode');
+        
+        if (isDarkMode) {
+            htmlRoot.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        } else {
+            htmlRoot.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        }
+    }
+
+    // Run on page load to check saved theme
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        const htmlRoot = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        if (savedTheme === 'dark') {
+            htmlRoot.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+    });
+</script>
 </head>
 <body>
-<button id="theme-toggle">Toggle Theme</button>
+<div id="theme-toggle" onclick="toggleTheme()">🌙</div>
 
 <div class="newsletter-container">
     <h1>Weekly WordPress Newsletter</h1>
@@ -229,7 +275,7 @@
             <div>
                 <h2 class="post-title">Easy Ways to Cut Costs for Your WordPress Freelance Business</h2>
                 <div class="post-summary">There are a lot of advantages to being a freelancer, one of them being the ability to save costs. Here are ways to do just that in your WordPress freelance business.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: thewpminute.com</span>
             </div>
             <a href="https://thewpminute.com/easy-ways-to-cut-costs-for-your-wordpress-freelance-business/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -241,7 +287,7 @@
             <div>
                 <h2 class="post-title">The Challenges WordPress Professionals Face in 2025</h2>
                 <div class="post-summary">In this episode of the WP Minute+ podcast, the discussion revolves around the challenges that WordPress professionals are expected to encounter in 2025.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: thewpminute.com</span>
             </div>
             <a href="https://thewpminute.com/the-challenges-wordpress-professionals-face-in-2025/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -253,7 +299,7 @@
             <div>
                 <h2 class="post-title">Enterprises Choose WordPress for CMS, Citing Better Functionality</h2>
                 <div class="post-summary">A new survey reveals why enterprises continue to rely on WordPress, highlighting functionality as a key factor among other considerations.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: thewpminute.com</span>
             </div>
             <a href="https://thewpminute.com/enterprises-choose-wordpress-for-cms-citing-better-functionality/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -265,7 +311,7 @@
             <div>
                 <h2 class="post-title">How WordPress Block Patterns Improve Your Workflow</h2>
                 <div class="post-summary">WordPress block patterns can streamline your workflow by enabling you to create reusable layouts easily and efficiently manage design consistency.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: thewpminute.com</span>
             </div>
             <a href="https://thewpminute.com/how-wordpress-block-patterns-improve-your-workflow/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -277,7 +323,7 @@
             <div>
                 <h2 class="post-title">Diversify with Shopify</h2>
                 <div class="post-summary">In this episode of the WP Minute+, Katie Keith discusses her outreach in diversifying her business into the Shopify ecosystem from WordPress.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: thewpminute.com</span>
             </div>
             <a href="https://thewpminute.com/diversify-with-shopify/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -289,7 +335,7 @@
             <div>
                 <h2 class="post-title">Unlocking the Power of External APIs in Bricks Builder with Bricksforge</h2>
                 <div class="post-summary">Explore how Bricksforge can simplify external API integration with Bricks Builder, enhancing your development projects.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: brendan-oconnell.com</span>
             </div>
             <a href="https://brendan-oconnell.com/unlocking-external-apis-bricksforge/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -301,7 +347,7 @@
             <div>
                 <h2 class="post-title">Exploring Bitflows: Your Ultimate WordPress Automation Tool</h2>
                 <div class="post-summary">Discover how Bitflows can streamline your WordPress automation tasks, making it easier to integrate and manage workflows.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: brendan-oconnell.com</span>
             </div>
             <a href="https://brendan-oconnell.com/unlock-wordpress-automation-with-bitflows/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -313,7 +359,7 @@
             <div>
                 <h2 class="post-title">Exploring Loveable: The Future of AI-Assisted App Development</h2>
                 <div class="post-summary">This article dives into how Loveable uses AI technology to revolutionize the app development process, offering an efficient and user-friendly approach.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: brendan-oconnell.com</span>
             </div>
             <a href="https://brendan-oconnell.com/revolutionizing-app-development-ai-technology/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -325,7 +371,7 @@
             <div>
                 <h2 class="post-title">Automate Airtable with n8n AI Agent Workflow</h2>
                 <div class="post-summary">Leverage AI tools to automate Airtable records and enhance your productivity while minimizing data entry efforts.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: brendan-oconnell.com</span>
             </div>
             <a href="https://brendan-oconnell.com/automate-airtable-with-n8n-ai-agent-workflow/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
@@ -337,7 +383,7 @@
             <div>
                 <h2 class="post-title">Create a Live Chat Widget for WooCommerce with n8n</h2>
                 <div class="post-summary">Integrate a live chat feature into your WooCommerce store for improved customer engagement and real-time responses to queries.</div>
-                <span class="source-url">Source: Unknown</span>
+                <span class="source-url">Source: brendan-oconnell.com</span>
             </div>
             <a href="https://brendan-oconnell.com/create_a_live_chat_widget_for_woocommerce_with_n8n/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
