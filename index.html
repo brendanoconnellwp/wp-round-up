@@ -8,7 +8,12 @@
     /* Modern font and base styles */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
     
-    /* Dark mode variables */
+    /* Enable system color scheme */
+    :root {
+        color-scheme: light dark;
+    }
+
+    /* Theme variables */
     :root {
         --bg-primary: #f8fafc;
         --bg-secondary: #ffffff;
@@ -31,6 +36,20 @@
         --button-hover-bg: #38bdf8;
     }
     
+    /* Smooth transitions */
+    body, 
+    .newsletter-container,
+    .post,
+    h1, 
+    .post-title, 
+    .post-summary, 
+    .button {
+        transition: 
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+    }
+    
     body {
         font-family: 'Inter', sans-serif;
         line-height: 1.6;
@@ -39,21 +58,23 @@
         padding: 20px;
         background-color: var(--bg-primary);
         color: var(--text-primary);
-        transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Theme toggle */
+    /* Theme toggle styling */
     #theme-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--button-bg);
-        color: white;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
         border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
         cursor: pointer;
+        font-size: 24px;
+        transition: transform 0.3s ease;
         z-index: 1000;
+    }
+
+    #theme-toggle:hover {
+        transform: rotate(360deg);
     }
 
     /* Container with subtle gradient background */
@@ -153,66 +174,111 @@
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-  /* Responsive Design for Posts */
-@media (max-width: 768px) {
-    .post {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    /* Responsive Design for Posts */
+    @media (max-width: 768px) {
+        .post {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .post-image {
+            width: 200px;
+            height: 150px;
+            margin-bottom: 15px;
+        }
+
+        .post-content {
+            align-items: center;
+            width: 100%; /* Ensure full width */
+        }
+
+        .button {
+            width: 100%; /* Full width button */
+            max-width: 300px; /* Optional: prevent extremely wide buttons */
+            padding: 10px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .source-url {
+            text-align: center;
+            width: 100%; /* Ensure full width */
+            overflow-wrap: break-word; /* Handle long URLs */
+            word-wrap: break-word;
+        }
+    }
+</style>
+</head>
+<body>
+<div id="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+<div class="newsletter-container">
+    <h1>Weekly WordPress Newsletter</h1>
+    <p>Week of: Feb 14, 2025</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brendan's Weekly WordPress Newsletter</title>
+<style>
+    /* Modern font and base styles */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    
+    /* Enable system color scheme */
+    :root {
+        color-scheme: light dark;
     }
 
-    .post-image {
-        width: 200px;
-        height: 150px;
-        margin-bottom: 15px;
+    /* Theme variables */
+    :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #ffffff;
+        --text-primary: #334155;
+        --text-secondary: #64748b;
+        --border-color: #e2e8f0;
+        --card-bg: white;
+        --button-bg: #0ea5e9;
+        --button-hover-bg: #0284c7;
     }
 
-    .post-content {
-        align-items: center;
+    :root.dark-mode {
+        --bg-primary: #121826;
+        --bg-secondary: #1e293b;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --border-color: #334155;
+        --card-bg: #1e293b;
+        --button-bg: #0ea5e9;
+        --button-hover-bg: #38bdf8;
     }
-
+    
+    /* Smooth transitions */
+    body, 
+    .newsletter-container,
+    .post,
+    h1, 
+    .post-title, 
+    .post-summary, 
     .button {
-        width: 100%;
-        text-align: center;
+        transition: 
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
     }
 
-    .source-url {
-        text-align: center;
-    }
-}
-  @media (max-width: 768px) {
-    .post {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .post-image {
-        width: 200px;
-        height: 150px;
-        margin-bottom: 15px;
-    }
-
-    .post-content {
-        align-items: center;
-        width: 100%; /* Ensure full width */
-    }
-
-    .button {
-        width: 100%; /* Full width button */
-        max-width: 300px; /* Optional: prevent extremely wide buttons */
-        padding: 10px;
-        box-sizing: border-box; /* Include padding in width calculation */
-    }
-
-    .source-url {
-        text-align: center;
-        width: 100%; /* Ensure full width */
-        overflow-wrap: break-word; /* Handle long URLs */
-        word-wrap: break-word;
-    }
-}
-   /* Theme toggle styling */
+    /* Theme toggle styling */
     #theme-toggle {
         position: absolute;
         top: 15px;
@@ -222,44 +288,144 @@
         cursor: pointer;
         font-size: 24px;
         transition: transform 0.3s ease;
+        z-index: 1000;
     }
 
     #theme-toggle:hover {
-        transform: rotate(20deg);
-    }
-    /* Other existing styles remain the same */
-</style>
-  <script>
-    // Theme Toggle Function
-    function toggleTheme() {
-        const htmlRoot = document.documentElement;
-        const isDarkMode = htmlRoot.classList.contains('dark-mode');
-        
-        if (isDarkMode) {
-            htmlRoot.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            document.getElementById('theme-toggle').textContent = '🌙';
-        } else {
-            htmlRoot.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            document.getElementById('theme-toggle').textContent = '☀️';
-        }
+        transform: rotate(360deg);
     }
 
-    // Run on page load to check saved theme
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme');
-        const htmlRoot = document.documentElement;
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        if (savedTheme === 'dark') {
-            htmlRoot.classList.add('dark-mode');
-            themeToggle.textContent = '☀️';
-        } else {
-            themeToggle.textContent = '🌙';
+    /* Container with subtle gradient background */
+    .newsletter-container {
+        background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary));
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 
+                    0 2px 4px -2px rgba(0,0,0,0.05);
+    }
+
+    /* Modern heading styles */
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    /* Post card styling */
+    .post {
+        border: 1px solid var(--border-color);
+        padding: 24px;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 24px;
+        border-radius: 12px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: var(--card-bg);
+    }
+
+    .post:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive image */
+    .post-image {
+        width: 150px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .post-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .post-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .post-summary {
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+        font-size: 1rem;
+        max-height: 3.6em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .source-url {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        margin-top: 10px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Modern button style */
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--button-bg);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        align-self: flex-start;
+        font-size: 0.9rem;
+    }
+
+    .button:hover {
+        background-color: var(--button-hover-bg);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive Design for Posts */
+    @media (max-width: 768px) {
+        .post {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-    });
-</script>
+
+        .post-image {
+            width: 200px;
+            height: 150px;
+            margin-bottom: 15px;
+        }
+
+        .post-content {
+            align-items: center;
+            width: 100%; /* Ensure full width */
+        }
+
+        .button {
+            width: 100%; /* Full width button */
+            max-width: 300px; /* Optional: prevent extremely wide buttons */
+            padding: 10px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .source-url {
+            text-align: center;
+            width: 100%; /* Ensure full width */
+            overflow-wrap: break-word; /* Handle long URLs */
+            word-wrap: break-word;
+        }
+    }
+</style>
 </head>
 <body>
 <div id="theme-toggle" onclick="toggleTheme()">🌙</div>
@@ -389,32 +555,3 @@
         </div>
     </div>
     
-
-    <footer>
-        <p>© 2025 <a href="https://brendan-oconnell.com" class="author-link" target="_blank" rel="noopener noreferrer">Brendan's</a> WP Weekly Round up</p>
-    </footer>
-</div>
-
-<script>
-    // Simple theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const htmlRoot = document.documentElement;
-
-    // Check for saved theme or default to light
-    if (localStorage.getItem('theme') === 'dark') {
-        htmlRoot.classList.add('dark-mode');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        htmlRoot.classList.toggle('dark-mode');
-        
-        // Save theme preference
-        if (htmlRoot.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-</script>
-</body>
-</html>
